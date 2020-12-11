@@ -1,1 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sentiment Analysis</title>
+        <link href="logo.png" rel="icon">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+		<script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+         "use strict";
+         function submitForm(oFormElement) {
+             var xhr = new XMLHttpRequest();
+             xhr.onload = function() {
+                 var result = parseFloat(xhr.responseText);
+                 var resultElement = document.getElementById('result');
+                 if (result == 0) {
+                     resultElement.className = 'text-dan';
+                     resultElement.innerHTML = 'Your review was NEGATIVE! 👎🏻';
+                 } else {
+                     resultElement.className = 'text-suc';
+                     resultElement.innerHTML = 'Your review was POSITIVE! 👍🏻';
+                 }
+             }
+             xhr.open (oFormElement.method, oFormElement.action, true);
+             var review = document.getElementById('review');
+             xhr.send (review.value);
+             return false;
+         }
+
+       
+
+$(function() {
+  var header = $(".start-style");
+  $(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+  
+    if (scroll >= 10) {
+      header.removeClass('start-style').addClass("scroll-on");
+    } else {
+      header.removeClass("scroll-on").addClass('start-style');
+    }
+  });
+});		
+
+
+
+</script>
+
+
+<style>
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #222;
+}
+::-webkit-scrollbar-thumb {
+    background: #fff;
+
+}
+body{
+    font-family: 'Ubuntu', sans-serif;
+	font-size: 20px;
+	color: #fff;
+}
+section{
+	display: flex;
+    height: 100vh;
+    justify-content: center;
+	align-items: center;
+}
+
+#Sentiment-Analysis, #About{
+	border-top-style: solid;
+	border-top-width: 6px;
+	border-top-color: #222;
+	background-color: #000;
+}
+.start-header {
+	opacity: 1;
+	transform: translateY(0);
+	padding: 12px 0;
+    -webkit-transition : all 0.3s ease-out;
+    background-color: transparent;
+	transition : all 0.3s ease-out;
+}
+.start-header.scroll-on {
+	padding: 8px 0;
+	-webkit-transition : all 0.3s ease-out;
+	transition : all 0.3s ease-out;
+}
+.start-header.scroll-on .navbar-brand img{
+	height: 24px;
+	-webkit-transition : all 0.3s ease-out;
+	transition : all 0.3s ease-out;
+}
+.navigation-wrap{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	-webkit-transition : all 0.3s ease-out;
+	transition : all 0.3s ease-out;
+}
+.navbar{
+    padding: 0;
+    background-color: transparent;
+}
+
+.bg-light {
+	background-color: transparent!important;
+    transition: all 200ms linear;
+}
+.bg-light.scroll-on{
+	background-color: #222 !important;
+}
+
+.navbar-brand img{
+	width: 24px;
+	height: 40px !important;
+	width: auto;
+	display: block;
+	top: 8px;
+	-webkit-transition : all 0.3s ease-out;
+	transition : all 0.3s ease-out;
+}
+
+
+.navbar-toggler {
+	float: right;
+	border: none;
+	padding-right: 0;
+}
+.navbar-toggler:active,
+.navbar-toggler:focus {
+	outline: none;
+}
+.navbar-light .navbar-toggler-icon {
+	width: 24px;
+	height: 17px;
+	background-image: none;
+	position: relative;
+	border-bottom: 1px solid #fff;
+    transition: all 300ms linear;
+}
+.navbar-light .navbar-toggler-icon:after, 
+.navbar-light .navbar-toggler-icon:before{
+	width: 24px;
+	position: absolute;
+	height: 1px;
+	background-color: #fff;
+	top: 0;
+	left: 0;
+	content: '';
+	z-index: 2;
+    transition: all 300ms linear;
+}
+.navbar-light .navbar-toggler-icon:after{
+	top: 8px;
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+	transform: rotate(45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+	transform: translateY(8px) rotate(-45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+	border-color: transparent;
+}
+.nav-link{
+	color: #fff !important;
+	text-align: center;
+	align-items: center;
+    transition: all 200ms linear;
+}
+.nav-item:hover .nav-link{
+	background-color: red !important;
+	border-radius: 5px;
+
+	align-items: center;
+	
+}
+.nav-item:active .nav-link{
+	background-color: red !important;
+	border-radius: 5px;
+	align-items: center;
+}
+
+
+.image-box {
+	width: 100%;
+	background-size: cover;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	background-position: center;
+	height: 100vh;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),  var(--image-url) ;
+  }
+  h1 {
+	color: white;
+	display: inline-flex;
+	flex-direction: column;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 3.3rem;
+	line-height: 75px;
+  }
+  h2 {
+	width: 100%;
+	color: white;
+	display: inline-flex;
+	flex-direction: column;
+	text-align: justify;
+	font-size: 1.75rem;
+	padding-left: 4%;
+	padding-right: 4%;
+  }
+  h3{
+	color: white;
+	display: inline-flex;
+	flex-direction: column;
+	text-align: justify;
+	font-size: 1.75rem;
+	padding-left: 4%;
+	padding-right: 4%;
+  }
+
+  
+
+.btn{
+	background-color: red;
+	border-color: red;
+	color: #fff;
+	font-size: 20px;
+	display: flex;
+	justify-content: center !important;
+	align-items: center!important;
+	margin: 1%;
+	
+}
+.btn:hover,
+.btn:active
+{
+	background-color: transparent;
+	border-color: red;
+	color: red;
+
+}
+.footer{
+	background-color: #222 !important;
+ }
+
+ i{
+	color: #fff;
+ }
+ 
+img{
+    align-items: center;
+	justify-content: center;
+	display: flex;
+	height: 100%; 
+	width: 100%;
+	padding: 4%;
+}
+form{
+	padding-left: 4%;
+	padding-right: 4%;
+	}
+.text-dan{
+    color: red;
+	}	
+.text-suc{
+	color: green;
+	}
+</style>
+
+    </head>
+
+    <body>
+      
+      
+	<div class="navigation-wrap bg-light start-header start-style">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<nav class="navbar navbar-expand-md navbar-light">
+					
+            <a class="navbar-brand" href="" > <img src="logo.png" ></a>	
+						
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto py-4 py-md-0">
+								
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link " href="#About">About</a>
+								</li>
+					
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link" href="#Sentiment-Analysis">Sentiment Analysis</a>
+								</li>
+							
+							</ul>
+						</div>
+						
+					</nav>		
+				</div>
+			</div>
+		</div>
+  </div>
+  
+<section id="Home">
+  <div class="image-box" style="--image-url: url(background1.jpg)">
+    <h1 data-aos="zoom-in" data-aos-duration="2000">Sentiment Analysis on Movie Reviews</h1>
+  <br>
+  
+  </div>
+  
+</section>
+
+<section id="About">
+	<div class="container"  data-aos="fade-up"data-aos-duration="1000">
+	<h3 >This my fifth project of the Deep Learning Nanodegree. The aim was that construct a recurrent neural network for the purpose of determining the sentiment of a movie review using the IMDB data set and create a model using Amazon's SageMaker service and deploy my model and construct a web app which interacts with my model.</h3>
+	<img src="D:\Sentiment Analysis\image1.png">
+</div>
+	
+  </section>
+          
+<section id="Sentiment-Analysis"  >
+        <div class="container" class="container"  data-aos="fade-up"data-aos-duration="1000">
+            <h2>Enter your review below and click submit to find out is your review positive, or negative?</h2>
+            
+            <form method="POST"
+                  action="https://1w9kehj8pb.execute-api.us-east-2.amazonaws.com/prod"
+                  onsubmit="return submitForm(this);" >                     <!-- HERE IS WHERE YOU NEED TO ENTER THE API URL -->
+                <div class="form-group">
+                    <label for="review"></label>
+                    <textarea class="form-control"  rows="5" id="review" style="font-size: 20px; padding: 20px;">Please write your review here ..</textarea>
+                </div>
+                <div class="d-flex justify-content-center">
+                <button type="submit" class="btn ">Submit</button>
+                </div>
+			</form>
+			<br>
+            <h2 class="text-suc" style="align-items: center;" id="result"></h2>
+        </div>
+      </section>
+
+
+      <footer class="footer footer-expand-lg  pt-3">
+        <div class="container text-center text-md-left">
+      <div class="row d-flex align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p class="text-center text-md-left"> Made With  <i class='bx bxs-heart bx-tada' style="color: red;"></i> By Amal Aljabri
+          </p>
+        </div>
+        <div class="col-md-5 col-lg-4 ml-lg-0">
+          <div class="text-center text-md-right">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item">
+                <a href="https://github.com/AmalAljabri" title="GitHub">
+                  <i class='bx-fw bx bxl-github bx-tada-hover'></i>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://twitter.com/amal_aljabri1"  title="Twitter">
+                <i class='bx-fw bx bxl-twitter bx-tada-hover'></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.youtube.com/channel/UCo5YQBPpqqnN8gEDCFSs6rQ?view_as=subscriber"  title="Youtube">
+                  <i class='bx-fw bx bxl-youtube bx-tada-hover'></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="http://linkedin.com/in/amal-aljabri"  title="LinkedIn">
+                  <i class='bx-fw bx bxl-linkedin bx-tada-hover'></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+    </body>
+</html>
 
