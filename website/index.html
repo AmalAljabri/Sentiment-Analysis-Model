@@ -33,25 +33,18 @@
              return false;
          }
 
-       
-
-$(function() {
-  var header = $(".start-style");
-  $(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-  
-    if (scroll >= 10) {
-      header.removeClass('start-style').addClass("scroll-on");
-    } else {
-      header.removeClass("scroll-on").addClass('start-style');
-    }
-  });
-});		
-
-
-
-</script>
-
+		 $(function() {
+			var header = $(".start-style");
+			$(window).scroll(function() { 
+				var scroll = $(window).scrollTop();
+				if (scroll >= 10) {
+					header.removeClass('start-style').addClass("scroll-on");
+				} else {
+					header.removeClass("scroll-on").addClass('start-style');
+				}
+			});
+		}); 
+	</script>
 
 <style>
 ::-webkit-scrollbar {
@@ -282,12 +275,8 @@ form{
 	color: green;
 	}
 </style>
-
-    </head>
-
-    <body>
-      
-      
+</head>
+ <body>
 	<div class="navigation-wrap bg-light start-header start-style">
 		<div class="container">
 			<div class="row">
@@ -397,4 +386,3 @@ form{
   </script>
     </body>
 </html>
-
